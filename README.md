@@ -3,10 +3,11 @@ AgressKey
 
 Выдача ключей для игроков!
 
-/create-key - создать ключ. Синтаксис: /<command> <key/%r> %<s/ns> <uses> <exec_command> . Optional: %u, %i
+/create-key - создать ключ. Синтаксис: /command [key/%r] %[s/ns] [uses] [exec_command] . Optional: %u, %i
+
     %r - случайный ключ
     %s - отправить ключ в чат
     %u - Ник игрока, использовавшего код
     %i - список предметов/команд.
 
-/key - использовать ключ. Синтаксис: /<command> <key>
+/key - использовать ключ. Синтаксис: /command [key]
