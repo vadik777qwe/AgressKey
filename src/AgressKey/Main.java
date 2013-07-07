@@ -75,7 +75,7 @@ public static File itemsfile;
 		      
 		      ResultSet players = stmt.executeQuery( "SELECT * FROM players where name='"+sender.getName().toLowerCase()+"' AND key = '"+args[0]+"';" );
               while(players.next()) {
-            	  sender.sendMessage(ChatColor.RED+"Вы уже активировали этот ключ!");
+            	  sender.sendMessage(ChatColor.RED+"Р’С‹ СѓР¶Рµ Р°РєС‚РёРІРёСЂРѕРІР°Р»Рё СЌС‚РѕС‚ РєР»СЋС‡!");
             	  return true;
               }
               ResultSet rs = stmt.executeQuery( "SELECT * FROM keylist where key='"+args[0]+"';" );
@@ -86,8 +86,8 @@ public static File itemsfile;
 		         Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),rs.getString("command").replaceAll("%u", sender.getName()));
 			      for (Player player : Bukkit.getOnlinePlayers()) {
 		                if (player.hasPermission("Send.Message.Key")) {
-		                  player.sendMessage(args[0] + ChatColor.GREEN + " Активирован " + ChatColor.WHITE + sender.getName());
-		                  player.sendMessage(args[0] + ChatColor.GREEN + " Команда " + ChatColor.WHITE + rs.getString("command").replaceAll("%u", sender.getName()));
+		                  player.sendMessage(args[0] + ChatColor.GREEN + " РђРєС‚РёРІРёСЂРѕРІР°РЅ " + ChatColor.WHITE + sender.getName());
+		                  player.sendMessage(args[0] + ChatColor.GREEN + " РљРѕРјР°РЅРґР° " + ChatColor.WHITE + rs.getString("command").replaceAll("%u", sender.getName()));
 		                }
 		              }
 
@@ -102,7 +102,7 @@ public static File itemsfile;
 
 			         }
 		    	  
-		          sender.sendMessage(ChatColor.GREEN + "Ваш код успешно активирован");
+		          sender.sendMessage(ChatColor.GREEN + "Р’Р°С€ РєРѕРґ СѓСЃРїРµС€РЅРѕ Р°РєС‚РёРІРёСЂРѕРІР°РЅ");
 			         int a = rs.getInt("use")-1;
 			       String sql = "UPDATE keylist set use = "+a+" where key='"+args[0]+"';";
 				      stmt.executeUpdate(sql);
@@ -112,7 +112,7 @@ public static File itemsfile;
 				      stmt.executeUpdate(sqll);
 					    c.commit();
 				      } else {
-		                  sender.sendMessage(ChatColor.RED + "Ваш код не верен.");
+		                  sender.sendMessage(ChatColor.RED + "Р’Р°С€ РєРѕРґ РЅРµ РІРµСЂРµРЅ.");
 		    	}
 		      
 	
@@ -124,7 +124,7 @@ public static File itemsfile;
 
 		    } catch ( Exception e ) {
 		    }
-	        } else sender.sendMessage(ChatColor.RED + "/key Ключ");
+	        } else sender.sendMessage(ChatColor.RED + "/key РљР»СЋС‡");
 
 	  } else   if(cmd.getName().equalsIgnoreCase("create-key")) {
 		  if(sender.hasPermission("AgressKey.create")) {
@@ -139,7 +139,7 @@ public static File itemsfile;
         
 
           }	  
-	      if(args[1].contentEquals("%s")) sendall("&8[&6Keys&8] &bКто первый напишет &c/key "+asd+"&b получит приз!");
+	      if(args[1].contentEquals("%s")) sendall("&8[&6Keys&8] &bРљС‚Рѕ РїРµСЂРІС‹Р№ РЅР°РїРёС€РµС‚ &c/key "+asd+"&b РїРѕР»СѓС‡РёС‚ РїСЂРёР·!");
           SQL.add(asd, Integer.parseInt(args[2]), command.toString().replaceAll("%i", (String) listitem().get(r.nextInt(listitem().size()))));
           } else {
     	      for (int i = 2; i < args.length; i++) {
@@ -149,10 +149,10 @@ public static File itemsfile;
               SQL.add(asd, Integer.parseInt(args[1]), command.toString().replaceAll("%i", (String) listitem().get(r.nextInt(listitem().size()))));
 
           }
-          sender.sendMessage(ChatColor.GREEN + "Ваш код: "+ asd +" успешно Создан");
+          sender.sendMessage(ChatColor.GREEN + "Р’Р°С€ РєРѕРґ: "+ asd +" СѓСЃРїРµС€РЅРѕ РЎРѕР·РґР°РЅ");
 
-	          }  else sender.sendMessage(ChatColor.RED + "/create-key ключ отправка количество команда");
-	  } else  sender.sendMessage(ChatColor.RED + "Я не знаю как ты узнал об этой команде, но у тебя нет прав.");
+	          }  else sender.sendMessage(ChatColor.RED + "/create-key РєР»СЋС‡ РѕС‚РїСЂР°РІРєР° РєРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјР°РЅРґР°");
+	  } else  sender.sendMessage(ChatColor.RED + "РЇ РЅРµ Р·РЅР°СЋ РєР°Рє С‚С‹ СѓР·РЅР°Р» РѕР± СЌС‚РѕР№ РєРѕРјР°РЅРґРµ, РЅРѕ Сѓ С‚РµР±СЏ РЅРµС‚ РїСЂР°РІ.");
 	  }
 		 return true;
 	 }
