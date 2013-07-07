@@ -2,9 +2,11 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>AgressKey</groupId>
   <artifactId>AgressKey</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.2-SNAPSHOT</version>
   <name>AgressKey</name>
   <packaging>jar</packaging>
+
+
 <repositories>
     <repository>
       <id>repobo-snap</id>
@@ -22,15 +24,19 @@
     </dependency>
   </dependencies>
  <build>
-         <sourceDirectory>src/AgressKey</sourceDirectory>
+         <sourceDirectory>${basedir}/src/main/java/AgressKey</sourceDirectory>
             <resources>
                 <resource>
-                    <directory>${basedir}/src/resource</directory>
+				<filtering>true</filtering>
+                    <directory>${basedir}/src/main/resource</directory>
                   <includes>
+                      
                     <include>plugin.yml</include>
                     </includes>
                 </resource>
+        
             </resources>
+            
             </build>
     
 </project>
