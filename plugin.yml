@@ -1,0 +1,22 @@
+name: AgressKey
+main: AgressKey.Main
+version: 0.3
+author: vadik
+commands: 
+   msend:
+   rate:
+   rateam:
+   key:
+   create-key:
+   remove-key:
+   command-create:
+   command-remove:
+   rateview:
+   rateremove:
+   raterp:
+   rateedit:
+   freeze:
+   unfreeze:
+   chat:
+   ad:
+   adblock:
