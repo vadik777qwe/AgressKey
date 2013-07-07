@@ -1,9 +1,13 @@
 package AgressKey;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
@@ -19,6 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin implements Listener
 {  static YamlConfiguration items;
 public static File itemsfile;
+public static Map<String,Long> cooldown = new HashMap();
 
 	 public void onEnable() {
 		  itemsfile = new File(getDataFolder(), "items.yml");
@@ -31,9 +36,7 @@ public static File itemsfile;
 		  }
 		 Bukkit.getPluginManager().registerEvents(this, this);
 	 }
-	 public void onDisable() {
-		 
-	 }
+	 public void onDisable() {}
 	 
 	 
 	 public void sendall(String a) {
@@ -41,7 +44,6 @@ public static File itemsfile;
 	      	 p.sendMessage(ChatColor.translateAlternateColorCodes('&', a));
 	       }
 	  }
-	 
 	 
 	 
 	  public List listitem() {
@@ -57,14 +59,19 @@ public static File itemsfile;
 		  
 	  }
 	 
-	 
-	 
-	 
-	 
-	 
 	 public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 	  if(cmd.getName().equalsIgnoreCase("key")) {
 	        if (args.length == 1) {
+	        if(cooldown.get("ServerTime") != null) {
+	        	long time = System.currentTimeMillis()/1000 - cooldown.get("ServerTime");
+	        	if(time < 5) {
+	        		int sec = (int) (5 - time);
+	        	 	sender.sendMessage(ChatColor.RED+"Подождите: " + sec + new time().second5(sec));
+	        		return true;
+	        	}
+	       
+	        }
+	       cooldown.put("ServerTime", System.currentTimeMillis()/1000);
 		  Connection c = null;
 		    Statement stmt = null;
 		    try {
@@ -90,7 +97,6 @@ public static File itemsfile;
 		                  player.sendMessage(args[0] + ChatColor.GREEN + " Команда " + ChatColor.WHITE + rs.getString("command").replaceAll("%u", sender.getName()));
 		                }
 		              }
-
 		      }
 		      
 		      rs = stmt.executeQuery( "SELECT * FROM keylist where key='"+args[0]+"';" );
