@@ -129,7 +129,7 @@ public static File itemsfile;
 	  } else   if(cmd.getName().equalsIgnoreCase("create-key")) {
 		  if(sender.hasPermission("AgressKey.create")) {
 	          if (args.length > 3) {
-	              String asd = args[0].replaceAll("%r", keyRandom.key());
+	              String key = args[0].replaceAll("%r", keyRandom.key());
 	              Random r = new Random();
 	      StringBuilder command = new StringBuilder();
           if(args[1].contentEquals("%s")) {
@@ -139,17 +139,17 @@ public static File itemsfile;
         
 
           }	  
-	      if(args[1].contentEquals("%s")) sendall("&8[&6Keys&8] &bКто первый напишет &c/key "+asd+"&b получит приз!");
-          SQL.add(asd, Integer.parseInt(args[2]), command.toString().replaceAll("%i", (String) listitem().get(r.nextInt(listitem().size()))));
+	      if(args[1].contentEquals("%s")) sendall("&8[&6Keys&8] &bКто первый напишет &c/key "+ key + "&b получит приз!");
+          SQL.add(key, Integer.parseInt(args[2]), command.toString().replaceAll("%i", (String) listitem().get(r.nextInt(listitem().size()))));
           } else {
     	      for (int i = 2; i < args.length; i++) {
     	            if (i > 2) command.append(" ");
     	            command.append(args[i]);
     	      }
-              SQL.add(asd, Integer.parseInt(args[1]), command.toString().replaceAll("%i", (String) listitem().get(r.nextInt(listitem().size()))));
+              SQL.add(key, Integer.parseInt(args[1]), command.toString().replaceAll("%i", (String) listitem().get(r.nextInt(listitem().size()))));
 
           }
-          sender.sendMessage(ChatColor.GREEN + "Ваш код: "+ asd +" успешно Создан");
+          sender.sendMessage(ChatColor.GREEN + "Ваш код: "+ key +" успешно Создан");
 
 	          }  else sender.sendMessage(ChatColor.RED + "/create-key ключ отправка количество команда");
 	  } else  sender.sendMessage(ChatColor.RED + "Я не знаю как ты узнал об этой команде, но у тебя нет прав.");
