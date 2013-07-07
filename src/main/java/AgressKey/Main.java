@@ -118,7 +118,7 @@ public static Map<String,Long> cooldown = new HashMap();
 				      stmt.executeUpdate(sqll);
 					    c.commit();
 				      } else {
-		                  sender.sendMessage(ChatColor.RED + "Ваш код не верен.");
+		                  sender.sendMessage(ChatColor.RED + "Ваш код не верен, или уже введен!");
 		    	}
 		      
 	
