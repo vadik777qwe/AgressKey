@@ -66,7 +66,7 @@ public static Map<String,Long> cooldown = new HashMap();
 	        	long time = System.currentTimeMillis()/1000 - cooldown.get("ServerTime");
 	        	if(time < 5) {
 	        		int sec = (int) (5 - time);
-	        	 	sender.sendMessage(ChatColor.RED+"Подождите: " + sec + new time().second5(sec));
+	        	 	sender.sendMessage(ChatColor.RED+"Попробуйте сново через: " + sec + new time().second5(sec));
 	        		return true;
 	        	}
 	       
