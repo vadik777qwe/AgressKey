@@ -135,7 +135,7 @@ public static Map<String,Long> cooldown = new HashMap();
 	  } else   if(cmd.getName().equalsIgnoreCase("create-key")) {
 		  if(sender.hasPermission("AgressKey.create")) {
 	          if (args.length > 3) {
-	              String key = args[0].replaceAll("%r", keyRandom.key());
+	              String key = args[0].replaceAll("%r", keyRandom.key("A0A0-00A0-AAAA"));
 	              Random r = new Random();
 	      StringBuilder command = new StringBuilder();
           if(args[1].contentEquals("%s")) {
