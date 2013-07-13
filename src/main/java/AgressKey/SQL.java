@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class SQL {
-	public static void Update(String a,int s) {
+	public static void Update(String a,int s,String text) {
 		 Connection c = null;
 		    Statement stmt = null;
 		    try {
@@ -16,7 +16,7 @@ public class SQL {
 		      System.out.println("Opened database successfully");
 
 		      stmt = c.createStatement();
-		      String sql = "UPDATE keylist set use = "+s+" where key='"+a+"';";
+		      String sql = "UPDATE keylist set "+text+" = "+s+" where key='"+a+"';";
 		      stmt.executeUpdate(sql);
 
 		      stmt.close();
@@ -66,7 +66,7 @@ public class SQL {
 		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		    }
 		  }
-public static void add(String a,int s,String g) {
+public static void add(String a,int s,String g,int gc) {
 	 Connection c = null;
 	    Statement stmt = null;
 	    try {
@@ -76,7 +76,7 @@ public static void add(String a,int s,String g) {
 	      System.out.println("Opened database successfully");
 
 	      stmt = c.createStatement();
-	      String sql = "INSERT INTO keylist VALUES (null, "+"'"+a+"'"+", "+s+","+"'"+g+"'"+" );";
+	      String sql = "INSERT INTO keylist VALUES (null, "+"'"+a+"'"+", "+s+","+"'"+g+"',"+gc+" );";
 	      stmt.executeUpdate(sql);
 
 	      stmt.close();

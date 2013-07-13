@@ -60,7 +60,22 @@ public static Map<String,Long> cooldown = new HashMap();
 	  }
 	 
 	 public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-	  if(cmd.getName().equalsIgnoreCase("key")) {
+		  if(cmd.getName().equalsIgnoreCase("editwin")) {
+			  if(sender.hasPermission("AgressKey.editwin")) {
+			  if(args.length == 2) {
+				 if(args[1].contains("1") || args[1].contains("0")) {
+			     sender.sendMessage("Сделано!");
+				 SQL.Update(args[0], 0,"Win");
+			  } else {
+				  sender.sendMessage(ChatColor.RED+"Можно использовать только 0 или 1");
+
+			  }
+			  } 
+		  }else {
+			  sender.sendMessage(ChatColor.RED+"Вы нашли тайную команду");
+		  }
+		  }
+else if(cmd.getName().equalsIgnoreCase("key")) {
 	        if (args.length == 1) {
 	        if(cooldown.get("ServerTime") != null) {
 	        	long time = System.currentTimeMillis()/1000 - cooldown.get("ServerTime");
@@ -101,6 +116,10 @@ public static Map<String,Long> cooldown = new HashMap();
 		      
 		      rs = stmt.executeQuery( "SELECT * FROM keylist where key='"+args[0]+"';" );
 		      if (rs.next()) {
+		    	   if(rs.getInt("Win") == 1) {
+
+				          sendall("&8[&6Keys&8] &bКлюч "+args[0]+"&b активирован:&f "+sender.getName());
+				          }
 		          if(rs.getInt("use") == 1) {
 			        	String sql = "DELETE from keylist where key='"+args[0]+"';";
 			  		    stmt.executeUpdate(sql);
@@ -109,7 +128,8 @@ public static Map<String,Long> cooldown = new HashMap();
 			         }
 		    	  
 		          sender.sendMessage(ChatColor.GREEN + "Ваш код успешно активирован");
-			         int a = rs.getInt("use")-1;
+		       
+		          int a = rs.getInt("use")-1;
 			       String sql = "UPDATE keylist set use = "+a+" where key='"+args[0]+"';";
 				      stmt.executeUpdate(sql);
 				      
@@ -146,13 +166,13 @@ public static Map<String,Long> cooldown = new HashMap();
 
           }	  
 	      if(args[1].contentEquals("%s")) sendall("&8[&6Keys&8] &bКто первый напишет &c/key "+ key + "&b получит приз!");
-          SQL.add(key, Integer.parseInt(args[2]), command.toString().replaceAll("%i", (String) listitem().get(r.nextInt(listitem().size()))));
+          SQL.add(key, Integer.parseInt(args[2]), command.toString().replaceAll("%i", (String) listitem().get(r.nextInt(listitem().size()))), 1);
           } else {
     	      for (int i = 2; i < args.length; i++) {
     	            if (i > 2) command.append(" ");
     	            command.append(args[i]);
     	      }
-              SQL.add(key, Integer.parseInt(args[1]), command.toString().replaceAll("%i", (String) listitem().get(r.nextInt(listitem().size()))));
+              SQL.add(key, Integer.parseInt(args[1]), command.toString().replaceAll("%i", (String) listitem().get(r.nextInt(listitem().size()))), 1);
 
           }
           sender.sendMessage(ChatColor.GREEN + "Ваш код: "+ key +" успешно Создан");
