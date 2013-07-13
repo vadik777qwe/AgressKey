@@ -5,6 +5,7 @@ import java.util.Random;
 public class keyRandom {
 	public static String CharRandom = "qwertyuiopasdfghjklzxcvbnm";
 
+	
 	public static String key(String s) {
 	    StringBuilder a = new StringBuilder();
 	    
