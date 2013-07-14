@@ -1,7 +1,8 @@
 name: AgressKey
 main: AgressKey.Main
-version: ${project.version}
+version: 0.3
 author: vadik
 commands:
    key:
    create-key:
+   editwin:
